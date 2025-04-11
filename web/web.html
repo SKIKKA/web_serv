@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>博客公告</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: "Helvetica Neue", "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #444;
+    }
+    a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 10px;
+      color: #666;
+      margin: 1em 0;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre code {
+      display: block;
+      padding: 1em;
+      background: #272822;
+      color: #f8f8f2;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">公告加载中...</div>
+  <script>
+    fetch("web.md")
+      .then(response => response.text())
+      .then(md => {
+        document.getElementById("content").innerHTML = marked.parse(md);
+      })
+      .catch(err => {
+        document.getElementById("content").innerHTML = "无法加载公告内容，请稍后再试。";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
